@@ -7,7 +7,7 @@
 #include<random>
 #include<iomanip>
 #include<algorithm>
-#include"include/BoardGame_Classes.hpp"
+#include"include/connectfour.hpp"
 using namespace std;
 
 // Set player symbol and name as Random Computer Player
@@ -19,6 +19,7 @@ RandomPlayer::RandomPlayer (char symbol, int dimension):Player(symbol)
 }
 
 // Generate a random move
-void RandomPlayer::get_move ( int& y) {
+void RandomPlayer::get_move (int&x, int& y) {
+    x = (int) (rand()/(RAND_MAX + 1.0) * dimension);
     y = (int) (rand()/(RAND_MAX + 1.0) * dimension);
 }
