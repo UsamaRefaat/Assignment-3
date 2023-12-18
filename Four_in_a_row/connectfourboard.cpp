@@ -6,12 +6,8 @@
 #include <random>
 #include <iomanip>
 #include <algorithm>
-#include "include/BoardGame_Classes.hpp"
+#include "include/connectfour.hpp"
 using namespace std;
-
-
-
-
 
 Connect4board::Connect4board() {
     n_rows = 6 ;
@@ -26,7 +22,7 @@ Connect4board::Connect4board() {
 // Return true  if move is valid and put it on board
 // within board boundaries in empty cell
 // Return false otherwise
-bool Connect4board::update_board( int y, char sy) {
+bool Connect4board::update_board( int x,int y, char sy) {
     // Only update if move is valid
     if (!( y < 0 || y >= n_cols)) {
         // Find the lowest empty position in the column
