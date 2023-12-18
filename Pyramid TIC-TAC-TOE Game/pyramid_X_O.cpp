@@ -18,7 +18,7 @@ pyramid_Board::pyramid_Board () {
 }
 
 bool pyramid_Board::is_valid_move(int row , int col )  {
-    if (row<0 || row>4 || col <0 || col>4)
+    if (row<0 || row>2 || col <0 || col>4)
     {return false ;}
     if ((row == 0 && (col == 0 || col == 1 || col == 3||col==4)) ||
              (row == 1 && (col == 0 || col == 4)))
