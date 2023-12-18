@@ -4,7 +4,7 @@
 // Version: 1
 # include "windows.h"
 #include <iostream>
-#include"include/BoardGame_Classes.hpp"
+#include"include/connectfour.hpp"
 using namespace std;
 
 int main(){
@@ -18,7 +18,7 @@ int main(){
 
 
     if (choice != 1)
-        players[1] = new Player (2, 'o');
+        players[1] = new connect4Player (2, 'o');
     else
         //Player pointer points to child
         players[1] = new RandomPlayer ('o', 7);
