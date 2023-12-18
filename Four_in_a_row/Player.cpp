@@ -6,7 +6,7 @@
 #include<random>
 #include<iomanip>
 #include<algorithm>
-#include"include/BoardGame_Classes.hpp"
+#include"include/connectfour.hpp"
 using namespace std;
 
 // Give player a symbol to use in playing
@@ -27,7 +27,7 @@ Player::Player (int order, char symbol) {
 }
 
 // Virtual (can change for other player types)
-void Player::get_move ( int& y) {
+void Player::get_move ( int&x,int& y) {
     cout << "\nPlease enter your move y (0 to 6) : ";
     cin >> y;
 }
@@ -42,6 +42,10 @@ char Player::get_symbol() {
     return symbol;
 }
 
-int X_O_Board::min_max(int y, bool max, bool ft) {
-    return 0;
+
+connect4Player :: connect4Player(int order, char symbol) : Player(order,symbol) {}
+
+void connect4Player :: get_move(int &x, int &y) {
+    cout << "\nPlease enter your move y (0 to 6) separated by spaces: ";
+    cin >> y;
 }
