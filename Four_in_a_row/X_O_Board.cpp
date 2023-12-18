@@ -10,6 +10,9 @@
 using namespace std;
 
 
+
+
+
 Connect4board::Connect4board() {
     n_rows = 6 ;
     n_cols = 7;
