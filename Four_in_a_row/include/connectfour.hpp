@@ -1,8 +1,3 @@
-// Class definition for XO game classes
-// Author:  Mohammad El-Ramly
-// Date:    10/10/2022
-// Version: 1
-
 using namespace std;
 
 class Board {
@@ -15,7 +10,7 @@ public:
     // Return true  if move is valid and put it on board
     // within board boundaries in empty cell
     // Return false otherwise
-    virtual bool update_board ( int y, char symbol) = 0;
+    virtual bool update_board ( int x ,int y, char symbol) = 0;
     // Returns true if there is any winner
     // either X or O
     // Written in a complex way. DO NOT DO LIKE THIS.
@@ -39,7 +34,6 @@ public:
     bool is_winner();
     bool is_draw();
     bool game_is_over();
-    int min_max(int y  , bool max  , bool ft) ;
 };
 
 ///////////////////////////////////////////
@@ -59,7 +53,7 @@ public:
     Player (int order, char symbol);
     // Get desired move: x y (each between 0 and 2)
     // Virtual (can change for other player types)
-    virtual void get_move( int& y);
+    virtual void get_move( int&x,int& y);
     // Give player info as a string
     string to_string();
     // Get symbol used by player
@@ -77,9 +71,14 @@ public:
     // Take a symbol and pass it to parent
     RandomPlayer (char symbol, int dimension);
     // Generate a random move
-    void get_move( int& y);
+    void get_move( int& x , int& y);
 };
 
+class connect4Player : public Player {
+public:
+    connect4Player(int order, char symbol);
+    void get_move(int& x, int& y);
+};
 ///////////////////////////////////////////
 class GameManager {
 private:
@@ -102,7 +101,7 @@ public:
 class Connect4board : public Board{
 public:
     Connect4board() ;
-    bool update_board(int y , char s) override;
+    bool update_board(int x,int y , char s) override;
     bool is_winner () override ;
     bool is_draw () override;
     void display_board()override;
