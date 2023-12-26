@@ -1,29 +1,34 @@
-// Class definition for XO_App class
-// Author:  Mohammad El-Ramly
-// Date:    10/10/2022
-// Version: 1
-# include "windows.h"
 #include <iostream>
-#include"include/connectfour.hpp"
+#inclue"include/connectfour.hpp"
 using namespace std;
 
-int main(){
-    int choice;
-    Player* players[2];
-    players[0] = new Player (1, 'x');
 
-    cout << "Welcome to FCAI X-O Game. :)\n";
-    cout << "Press 1 if you want to play with computer  : ";
-    cin >> choice;
+GameManager::GameManager(Board* bPtr, Player* playerPtr[2] ) {
+    boardPtr = bPtr;
+    players[0] = playerPtr[0];
+    players[1] = playerPtr[1];
+}
 
+void GameManager::run() {
+    int x, y;
 
-    if (choice != 1)
-        players[1] = new connect4Player (2, 'o');
-    else
-        //Player pointer points to child
-        players[1] = new RandomPlayer ('o', 7);
+    boardPtr->display_board();
 
-    GameManager x_o_game (new Connect4board() , players);
-    x_o_game.run();
-    system ("pause") ;
+    while (!boardPtr->game_is_over()) {
+        for (int i:{0,1}) {
+            players[i]->get_move(x, y);
+            while (!boardPtr->update_board (x, y, players[i]->get_symbol())){
+                players[i]->get_move(x, y);
+            }
+            boardPtr->display_board();
+            if (boardPtr->is_winner()){
+                cout  << players[i]->to_string() << " wins\n";
+                return;
+            }
+            if (boardPtr->is_draw()){
+                cout << "Draw!\n";
+                return;
+            }
+        }
+    }
 }
